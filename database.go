@@ -37,8 +37,8 @@ func DB_Connection() {
 		dbName = "db_tb_berkah_jaya"
 	}
 
-	/* @tcp local 
-	@uniq development */
+	
+	// @uniq development
 	dbURI := fmt.Sprintf("%s:%s@uniq(%s)/%s?parseTime=true", dbUser, dbPwdd, dbHost, dbName)
 
 	db, err := gorm.Open(mysql.Open(dbURI))

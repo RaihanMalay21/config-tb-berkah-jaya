@@ -1,11 +1,11 @@
 module github.com/RaihanMalay21/config-tb-berkah-jaya
 
-go 1.22.2
+go 1.21.5
 
 require (
-	github.com/RaihanMalay21/models_TB_Berkah_Jaya v0.0.0-20240810142202-0d5c147efc3b
+	github.com/RaihanMalay21/models_TB_Berkah_Jaya v0.0.0-20240903065552-055e854f0e7c
 	github.com/golang-jwt/jwt/v5 v5.2.1
-	github.com/gorilla/sessions v1.3.0
+	github.com/gorilla/sessions v1.2.2
 	gorm.io/driver/mysql v1.5.7
 	gorm.io/gorm v1.25.11
 )

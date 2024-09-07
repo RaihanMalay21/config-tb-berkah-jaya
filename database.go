@@ -38,8 +38,8 @@ func DB_Connection() {
 	}
 
 	
-	// @uniq development
-	dbURI := fmt.Sprintf("%s:%s@uniq(%s)/%s?parseTime=true", dbUser, dbPwdd, dbHost, dbName)
+	// @unix development
+	dbURI := fmt.Sprintf("%s:%s@unix(%s)/%s?parseTime=true", dbUser, dbPwdd, dbHost, dbName)
 
 	db, err := gorm.Open(mysql.Open(dbURI))
 	if err != nil {

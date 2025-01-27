@@ -9,9 +9,10 @@ import (
 )
 
 func getParameter(name string) string {
-	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("us-east-1"),
-	}))
+	sess, err := session.NewSession(&aws.Config{
+		Region: aws.String("us-west-1")},
+	)
+	log.Println(err)
 
 	ssmSvc := ssm.New(sess)
 

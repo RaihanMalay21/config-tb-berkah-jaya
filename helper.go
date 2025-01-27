@@ -10,7 +10,7 @@ import (
 
 func getParameter(name string) string {
 	sess, err := session.NewSession(&aws.Config{
-		Region: aws.String("us-west-1")},
+		Region: aws.String("us-east-1a")},
 	)
 	log.Println(err)
 

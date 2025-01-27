@@ -4,6 +4,10 @@ import (
 	"fmt"
 
 	models "github.com/RaihanMalay21/models_TB_Berkah_Jaya"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/credentials"
+	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/service/ssm"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -12,27 +16,30 @@ var (
 	DB *gorm.DB
 )
 
-func DB_Connection() {
-	var (
-		dbUser string
-		dbPwdd string
-		dbHost string
-		dbName string
-	)
+func DB_Connection(AKID, SECRETKEY string) {
+	sess, err := session.NewSession(&aws.Config{
+		Region:      aws.String("us-east-1"),
+		Credentials: credentials.NewStaticCredentials(AKID, SECRETKEY, ""),
+	})
+	if err != nil {
+		panic(err)
+	}
 
-	dbUser = getParameter("DB_USER")
+	ssmSvc := ssm.New(sess)
+
+	dbUser := getParameter("DB_USER", ssmSvc)
 	if dbUser == "" {
 		dbUser = "root"
 	}
-	dbPwdd = getParameter("DB_PASSWORD")
+	dbPwdd := getParameter("DB_PASSWORD", ssmSvc)
 	if dbPwdd == "" {
 		dbPwdd = "90909090"
 	}
-	dbHost = getParameter("DB_HOST")
+	dbHost := getParameter("DB_HOST", ssmSvc)
 	if dbHost == "" {
 		dbHost = "/cloudsql/api-tb-berkah-jaya:us-central1:db-tb-berkah-jaya21"
 	}
-	dbName = getParameter("DB_NAME")
+	dbName := getParameter("DB_NAME", ssmSvc)
 	if dbName == "" {
 		dbName = "db_tb_berkah_jaya"
 	}

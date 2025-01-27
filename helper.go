@@ -9,7 +9,10 @@ import (
 )
 
 func getParameter(name string) string {
-	sess := session.Must(session.NewSession())
+	sess := session.Must(session.NewSession(&aws.Config{
+		Region: aws.String("us-east-1a"),
+	}))
+
 	ssmSvc := ssm.New(sess)
 
 	param, err := ssmSvc.GetParameter(&ssm.GetParameterInput{

@@ -45,7 +45,7 @@ func DB_Connection(AKID, SECRETKEY string) {
 	}
 
 	// @unix development
-	dbURI := fmt.Sprintf("%s:%s@unix(%s)/%s?parseTime=true", dbUser, dbPwdd, dbHost, dbName)
+	dbURI := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?parseTime=true", dbUser, dbPwdd, dbHost, 3306, dbName)
 
 	db, err := gorm.Open(mysql.Open(dbURI))
 	if err != nil {

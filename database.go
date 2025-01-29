@@ -18,10 +18,11 @@ func DB_Connection() {
 	dbPwdd := os.Getenv("DB_PASSWORD")
 	dbHost := os.Getenv("DB_HOST")
 	dbName := os.Getenv("DB_NAME")
+	dbPort := os.Getenv("DB_PORT")
 
 	fmt.Println(dbUser, dbPwdd, dbHost, dbName)
 	// @unix development
-	dbURI := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?parseTime=true", dbUser, dbPwdd, dbHost, 3306, dbName)
+	dbURI := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?parseTime=true", dbUser, dbPwdd, dbHost, dbPort, dbName)
 
 	db, err := gorm.Open(mysql.Open(dbURI))
 	if err != nil {
